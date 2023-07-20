@@ -1,0 +1,8 @@
+
+---
+
+- hosts: LoadBalancer 
+  become: yes
+  #become_user: root
+  roles:
+    - LoadBalancer-playbook

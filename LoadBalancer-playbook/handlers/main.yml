@@ -1,0 +1,7 @@
+---
+# handlers file for LoadBalancer-playbook
+- name: restart Nginx
+  service :
+    name: nginx
+    state: restarted 
+

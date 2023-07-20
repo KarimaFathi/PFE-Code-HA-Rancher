@@ -1,0 +1,14 @@
+- name: install updates
+  yum: update_cache=yes
+- name: install EPEL repo
+  become: yes
+  yum: name=epel-release state=present
+- name: install Nginx
+  yum:
+    name: nginx
+    state: present
+- name: start and enable Nginx 
+  service :
+    name: nginx
+    enabled: yes
+#    state: started 

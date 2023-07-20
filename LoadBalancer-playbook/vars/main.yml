@@ -1,0 +1,78 @@
+---
+# vars file for LoadBalancer-playbook
+
+server_1_IP: 172.20.10.11
+server_2_IP: 172.20.10.13
+server_3_IP: 172.20.10.14
+
+nginx_config:
+  upstreams:
+    - name: rancher_servers_http
+      servers:
+        - ip: "{{ server_1_IP }}"
+          port: 80
+          max_fails: 3
+          fail_timeout: "5s"
+        - ip: "{{ server_2_IP }}"
+          port: 80
+          max_fails: 3
+          fail_timeout: "5s"
+        - ip: "{{ server_3_IP }}"
+          port: 80
+          max_fails: 3
+          fail_timeout: "5s"
+    - name: rancher_servers_https
+      servers:
+        - ip: "{{ server_1_IP }}"
+          port: 443
+          max_fails: 3
+          fail_timeout: "5s"
+        - ip: "{{ server_2_IP }}"
+          port: 443
+          max_fails: 3
+          fail_timeout: "5s"
+        - ip: "{{ server_3_IP }}"
+          port: 443
+          max_fails: 3
+          fail_timeout: "5s"
+    - name: RKE2_supervisor_backend
+      servers:
+        - ip: "{{ server_1_IP }}"
+          port: 9345
+          max_fails: 3
+          fail_timeout: "5s"
+        - ip: "{{ server_2_IP }}"
+          port: 9345
+          max_fails: 3
+          fail_timeout: "5s"
+        - ip: "{{ server_3_IP }}"
+          port: 9345
+          max_fails: 3
+          fail_timeout: "5s"
+    - name: kubernetes_api_backend
+      servers:
+        - ip: "{{ server_1_IP }}"
+          port: 6443
+          max_fails: 3
+          fail_timeout: "5s"
+        - ip: "{{ server_2_IP }}"
+          port: 6443
+          max_fails: 3
+          fail_timeout: "5s"
+        - ip: "{{ server_3_IP }}"
+          port: 6443
+          max_fails: 3
+          fail_timeout: "5s"
+  load_balancers:
+    - name: rancher_http_lb
+      listen_port: 80
+      upstream: rancher_servers_http
+    - name: rancher_https_lb
+      listen_port: 443
+      upstream: rancher_servers_https
+    - name: RKE2_supervisor_lb
+      listen_port: 9345
+      upstream: RKE2_supervisor_backend
+    - name: kubernetes_api_lb
+      listen_port: 6443
+      upstream: kubernetes_api_backend

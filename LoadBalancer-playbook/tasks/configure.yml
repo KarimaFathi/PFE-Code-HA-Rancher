@@ -1,0 +1,10 @@
+- name: installing the required stream module
+  yum:
+    name: nginx-mod-stream.x86_64
+    state: present
+- name: Copy the Nginx config file and restart nginx
+  template:
+    src: templates/nginx_template.j2
+    dest: /etc/nginx/nginx.conf
+  notify:
+    - restart Nginx
