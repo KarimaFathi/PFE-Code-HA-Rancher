@@ -1,8 +1,13 @@
 
 ---
 
-- hosts: LoadBalancer 
-  become: yes
+#- hosts: LoadBalancer 
+#  become: yes
   #become_user: root
+#  roles:
+#    - LoadBalancer-playbook
+
+- hosts: DNS_server
+  become: yes
   roles:
-    - LoadBalancer-playbook
+    - Bind-Playbook    

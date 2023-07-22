@@ -1,0 +1,10 @@
+---
+ - name: Install bind and bind-utils package
+   yum: 
+     name: ['bind', 'bind-utils'] 
+     state: present
+ 
+ - name: Enable service named
+   service: 
+     name: named
+     enabled: yes

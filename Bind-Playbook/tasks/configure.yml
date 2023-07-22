@@ -1,0 +1,39 @@
+---
+
+- name: Add TCP port 53 to the firewall
+  firewalld:
+    port: 53/tcp
+    permanent: yes
+    state: enabled
+
+- name: Add UDP port 53 to the firewall
+  firewalld:
+    port: 53/udp
+    permanent: yes
+    state: enabled
+
+- name: reload service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+
+- name: customize the named.conf file with desired zone and options
+  template: 
+    src: templates/named-conf.j2
+    dest: /etc/named.conf 
+  notify:
+    - restart bind
+
+- name: Copy zone forward files to /var/named
+  template: 
+    src: templates/zone-forward.j2
+    dest: /var/named/fwd.{{item}}
+  loop: "{{zone_names}}"
+  notify:
+    - restart bind
+
+- name: Disable IPv6 support
+  lineinfile: dest=/etc/sysconfig/named line='OPTIONS="-4"' regexp="^OPTIONS" 
+  notify:
+    - restart bind
+

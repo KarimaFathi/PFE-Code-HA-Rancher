@@ -1,2 +1,5 @@
 [LoadBalancer]
 172.20.10.210 ansible_user=kafa
+
+[DNS_server]
+172.20.10.210 ansible_user=kafa

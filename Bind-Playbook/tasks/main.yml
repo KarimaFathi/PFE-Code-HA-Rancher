@@ -1,0 +1,7 @@
+---
+# tasks file for Bind-Playbook
+
+- import_tasks: /home/kafa/PFE-Code-HA-Rancher/Bind-Playbook/tasks/install.yml
+- import_tasks: /home/kafa/PFE-Code-HA-Rancher/Bind-Playbook/tasks/configure.yml
+
+

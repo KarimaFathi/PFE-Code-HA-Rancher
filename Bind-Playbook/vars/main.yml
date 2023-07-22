@@ -1,0 +1,11 @@
+---
+# vars file for Bind-Playbook
+
+zone_names: 
+  -  inwi.priv
+allow_query_from: "172.20.10.0/24"
+name_server: rancher
+recursion: yes
+servers:
+  - { hostname: rancher, ip: 172.20.10.210 }
+zone1: inwi.priv

@@ -1,0 +1,11 @@
+$ORIGIN {{zone1}}.
+$TTL 3600 
+@ SOA {{name_server}}.{{zone1}} root.{{zone1}} (1 15m 5m 30d 1h) 
+		
+                        	NS	{{name_server}}.{{zone1}}.
+
+{% for server1 in servers %}
+
+{{server1.hostname}}	IN	A	{{server1.ip}}
+
+{% endfor %}
