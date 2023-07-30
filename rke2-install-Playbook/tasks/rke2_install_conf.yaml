@@ -1,0 +1,70 @@
+  - name: Stop firewalld service
+    systemd:
+      name: firewalld
+      state: stopped
+  - name: Disable firewalld
+    systemd:
+      name: firewalld
+      enabled: no
+  - name: configure NetworkManager to ignore calico/flannel related network interfaces
+    copy:
+      dest: "/etc/NetworkManager/conf.d/rke2-canal.conf"
+      content: |
+        [keyfile]
+        unmanaged-devices=interface-name:cali*;interface-name:flannel*
+  - name: create the directory where the RKE2 config file is going to be placed  
+    file:
+      path: /etc/rancher/rke2/
+      state: directory
+  - name: RKE2 installation
+    shell: "curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL='{{ RKE2_version }}' INSTALL_RKE2_TYPE=server sh -"
+  - name: enable rke2-server.service 
+    when: "'server_node' in group_names"
+    service:
+      name: rke2-server.service
+      enabled: yes 
+  - name: start rke2-server.service 
+    when: "'server_node' in group_names"
+    service:
+      name: rke2-server.service
+      state: started 
+  - name: Retrieve the RKE2 token
+    when: "'server_node' in group_names"
+    shell: cat /var/lib/rancher/rke2/server/node-token
+    register: rke2_token
+  - name: Add RKE2 Token to dummy host
+    when: "'server_node' in group_names"
+    add_host:
+      name: "RKE2_TOKEN_HOLDER"
+      token: "{{ rke2_token.stdout }}"
+  - name: configure the RKE2 to use the proxy server
+    when: "'other_nodes' in group_names"
+    copy:
+      dest: "/etc/default/rke2-server"
+      content: |
+        HTTP_PROXY=http://{{proxy_ip}}:{{proxy_port}}
+        HTTPS_PROXY=http://{{proxy_ip}}:{{proxy_port}}
+        NO_PROXY={{nodes_private_network}}
+  - name: configure each additional node with the same shared token
+    when: "'other_nodes' in group_names"
+    copy:
+      dest: "/etc/rancher/rke2/config.yaml"
+      content: |
+        token: {{ hostvars['RKE2_TOKEN_HOLDER']['token'] }}
+        server: https://{{ DNS_DOMAIN }}:9345
+  - name: enable rke2-server.service
+    when: "'other_nodes' in group_names"
+    service:
+      name: rke2-server.service
+      enabled: yes
+  - name: start rke2-server.service
+    when: "'other_nodes' in group_names"
+    service:
+      name: rke2-server.service
+      state: started
+  
+
+
+
+
+

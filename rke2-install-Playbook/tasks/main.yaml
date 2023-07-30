@@ -1,0 +1,3 @@
+---
+
+- import_tasks: rke2_install_conf.yaml

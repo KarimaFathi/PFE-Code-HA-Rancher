@@ -1,0 +1,8 @@
+---
+# vars file for rke2-install-Playbook
+
+RKE2_version: v1.24
+DNS_DOMAIN: rancher.inwi.priv
+proxy_ip: 10.137.40.42
+proxy_port: 3128
+nodes_private_network: 172.20.10.0/24
