@@ -3,3 +3,18 @@
 
 [DNS_server]
 172.20.10.210 ansible_user=kafa
+
+[server_node]
+172.20.10.11 ansible_user=root ansible_password=@vault.yml
+
+[other_nodes]
+172.20.10.13 ansible_user=root ansible_password=@vault.yml
+172.20.10.14 ansible_user=root ansible_password=@vault.yml
+
+[all-nodes:children]
+server_node
+other_nodes
+
+
+
+

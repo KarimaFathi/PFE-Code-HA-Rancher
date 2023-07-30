@@ -7,7 +7,11 @@
 #  roles:
 #    - LoadBalancer-playbook
 
-- hosts: DNS_server
-  become: yes
+#- hosts: DNS_server
+#  become: yes
+#  roles:
+#    - Bind-Playbook  
+
+- hosts: all-nodes
   roles:
-    - Bind-Playbook    
+    - rke2-install-Playbook 
