@@ -1,0 +1,10 @@
+- name: Download the Helm script 
+  uri:
+    url: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    dest: /tmp/get_helm.sh
+    mode: '700'
+  register: download_result
+
+- name: Helm installation
+  command: /tmp/get_helm.sh
+  when: download_result is succeeded

@@ -1,0 +1,7 @@
+---
+# vars file for HA-rancher-Playbook
+
+LB_domain_name: rancher.inwi.priv
+CHART_REPO: stable
+expected: "kubectl: OK"
+

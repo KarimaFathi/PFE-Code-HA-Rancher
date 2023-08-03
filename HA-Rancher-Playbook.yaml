@@ -12,6 +12,12 @@
 #  roles:
 #    - Bind-Playbook  
 
-- hosts: all-nodes
+#- hosts: all-nodes
+#  roles:
+#    - rke2-install-Playbook 
+
+
+- hosts: all_nodes
   roles:
-    - rke2-install-Playbook 
+   - HA-rancher-Playbook
+

@@ -1,0 +1,8 @@
+---
+# tasks file for HA-rancher-Playbook
+
+- import_tasks: first_conf.yaml
+- import_tasks: kubectl_install.yaml
+- import_tasks: Helm_install.yaml
+- import_tasks: rancher_install.yaml
+

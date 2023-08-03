@@ -1,0 +1,13 @@
+- name: Configure each node endpoint as the load balancer DNS
+  lineinfile:
+    path: /etc/rancher/rke2/rke2.yaml 
+    regex: '^\s*server:\s.*'
+    line: '    server: https://127.0.0.1:6443'
+    state: present
+    backup: true
+
+- name: Adding the path in the bashrc files to set KUBECONFIG globally 
+  lineinfile: dest=/root/.bashrc  line='export KUBECONFIG=/etc/rancher/rke2/rke2.yaml' insertafter='^export no_proxy'state=present
+ 
+- name: Source the bashrc file
+  shell: source /root/.bashrc

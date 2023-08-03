@@ -5,13 +5,13 @@
 172.20.10.210 ansible_user=kafa
 
 [server_node]
-172.20.10.11 ansible_user=root ansible_password=@vault.yml
+HA-Rancher-0 ansible_host=172.20.10.11 ansible_user=root ansible_password=@vault.yml
 
 [other_nodes]
-172.20.10.13 ansible_user=root ansible_password=@vault.yml
-172.20.10.14 ansible_user=root ansible_password=@vault.yml
+HA-Rancher-1 ansible_host=172.20.10.13 ansible_user=root ansible_password=@vault.yml
+ha-rancher-2 ansible_host=172.20.10.14 ansible_user=root ansible_password=@vault.yml
 
-[all-nodes:children]
+[all_nodes:children]
 server_node
 other_nodes
 
