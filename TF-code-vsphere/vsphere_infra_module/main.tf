@@ -60,7 +60,6 @@ resource "vsphere_virtual_machine" "vms" {
     customize {
       linux_options{  
          host_name = "${var.vm_name}-${count.index}"   
-         domain = "inwi.test"
       }
 
       network_interface {
