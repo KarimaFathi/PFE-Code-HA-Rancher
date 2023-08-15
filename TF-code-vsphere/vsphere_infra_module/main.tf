@@ -48,7 +48,7 @@ resource "vsphere_virtual_machine" "vms" {
   resource_pool_id = data.vsphere_compute_cluster.Rancher_cluster.resource_pool_id
   disk {
     label       = "disk0"
-    size        = "20"
+    size        = "40"
   }
   network_interface {
     network_id = data.vsphere_network.network.id              
