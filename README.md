@@ -21,7 +21,9 @@ The approach to accomplish the tasks outlined above leverages Terraform Modules 
 ## Pre-requisites
 
 ### Variables
-To enhance Terraform module flexibility, variables lack default values, necessitating explicit configuration input. Instead of responding to prompts during `terraform apply`, a more efficient solution involves using a tfvars file. This file, with simple key-value pairs, streamlines the configuration process, supplying Terraform with all essential input.
+To enhance Terraform module flexibility, variables lack default values, necessitating explicit configuration input. Instead of responding to prompts during `terraform apply`, a more efficient solution involves using a **tfvars** file. This file, with simple key-value pairs, streamlines the configuration process, supplying Terraform with all essential input.
+
+
 
 
 
