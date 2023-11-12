@@ -36,7 +36,11 @@ the **--private-key** option ensures that Ansible uses the specified private key
 
 | Name | Version |
 |------|---------|
-| <a name="vSphere"></a> [Terraform-provider-vsphere](#vSphere) | https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/resources/compute_cluster |
+| Terraform-provider-vsphere | https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/resources/compute_cluster |
+| <a name="RKE2"></a> [RKE2 set up version 2.4](#RKE2) | https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-cluster-setup/rke2-for-rancher |
+| <a name="Rancher"></a> [Rancher set up version 2.7](#Rancher) | https://ranchermanager.docs.rancher.com/v2.7/pages-for-subheaders/install-upgrade-on-a-kubernetes-cluster |
+
+
 
 
 
