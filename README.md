@@ -20,8 +20,23 @@ The approach to accomplish the tasks outlined above leverages Terraform Modules 
 
 ## Pre-requisites
 
-### Variables
+### Variables for terraform module
 To enhance Terraform module flexibility, variables lack default values, necessitating explicit configuration input. Instead of responding to prompts during `terraform apply`, a more efficient solution involves using a **tfvars** file. This file, with simple key-value pairs, streamlines the configuration process, supplying Terraform with all essential input.
+
+### Variables for Ansible roles 
+Each role inside this repository has a vars directory with a main.yml file. Make sure to replace **IP addresses, domain names, etc..**, with your custom ones. Also, the inventory file should be modified accordingly.
+
+## Infrastructure Configuration
+
+`ansible-playbook -i inventory --private-key .ssh/id_ecdsa HA-Rancher-Playbook.yaml --ask-become-pass` 
+
+the **--private-key** option ensures that Ansible uses the specified private key for SSH authentication when connecting to the remote hosts listed in the inventory. This key must be associated with the user account on the remote hosts and should have the corresponding public key added to the authorized_keys file. The **--ask-become-pass** option is used to prompt for the password required for privilege escalation (becoming a superuser) on the remote host using sudo.
+
+
+
+
+
+
 
 
 
