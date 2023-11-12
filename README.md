@@ -1,5 +1,5 @@
 # Automated Deployment of a Highly Available Rancher Platform on VMware vSphere
-Welcome to my final year project! &#x1F680;
+Welcome to my final year project! &#x1F680;.
 In this project, I've automated the infrastructure provisioning using Terraform and its configuration with Ansible. This repository serves as a reference configuration for the following tasks:
 - Creation of a set of VMs on vSphere using CentOS 7 based on a template with static IP addresses.
 - Application of an anti-affinity rule to ensure physical separation between VMs upon creation.
@@ -11,9 +11,18 @@ In this project, I've automated the infrastructure provisioning using Terraform 
 # Principle
 The approach to accomplish the tasks outlined above leverages Terraform Modules and Ansible Roles :
 - A module for the infrastructure (creating VMs in vSphere).
-- A Role for the installation of RKE2.f 
+- A Role for the installation of RKE2.
 - A Role for installing and configuring Nginx.
 - A Role for installing and configuring Bind.
 - A Role for Deploying Rancher on the RKE2 cluster.
+
+# Usage
+
+## Pre-requisites
+
+### Variables
+To enhance Terraform module flexibility, variables lack default values, necessitating explicit configuration input. Instead of responding to prompts during `terraform apply`, a more efficient solution involves using a tfvars file. This file, with simple key-value pairs, streamlines the configuration process, supplying Terraform with all essential input.
+
+
 
   
