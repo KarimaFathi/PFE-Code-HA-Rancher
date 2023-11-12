@@ -32,6 +32,13 @@ Each role inside this repository has a vars directory with a main.yml file. Make
 
 the **--private-key** option ensures that Ansible uses the specified private key for SSH authentication when connecting to the remote hosts listed in the inventory. This key must be associated with the user account on the remote hosts and should have the corresponding public key added to the authorized_keys file. The **--ask-become-pass** option is used to prompt for the password required for privilege escalation (becoming a superuser) on the remote host using sudo.
 
+## Useful links for documentation 
+
+| Name | Version |
+|------|---------|
+| <a name="vSphere"></a> [Terraform-provider-vsphere](#vSphere) | https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/resources/compute_cluster |
+
+
 
 
 
